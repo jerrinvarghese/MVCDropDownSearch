@@ -1,0 +1,37 @@
+﻿@model MVCDropDownAndSearch.Models.Student
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    Name
+    <div>
+        @Html.TextBox("name")
+    </div>
+</div>
+
+<div>
+    <input type="button" value="Search" id="btnSearch" />
+</div>
+
+<div id="divResult"></div>
+@section scripts{
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnSearch').click(function(){
+            $.ajax({
+                url: "/Student/Details",
+                data:{name:$('#name').val()},
+                success:function(result)
+                {
+                    $('#divResult').html(result);
+                }
+            });
+        });
+    });
+    </script>
+}
+ 
